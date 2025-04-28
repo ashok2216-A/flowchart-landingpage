@@ -6,6 +6,14 @@ import { blogPosts } from "@/data/blogPosts";
 const recentPosts = blogPosts.slice(0, 3);
 
 export const BlogSection = () => {
+  // Function to scroll to top when button is clicked
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <section className="py-20 md:py-28 overflow-hidden relative">
       {/* Background Elements */}
@@ -85,6 +93,7 @@ export const BlogSection = () => {
           <Link 
             to="/blog" 
             className="inline-flex items-center gap-2 text-brand-blue border border-brand-blue/30 hover:border-brand-blue hover:bg-background/60 px-6 py-3 rounded-lg transition-all duration-300 font-medium"
+            onClick={handleScrollToTop}
           >
             View all articles
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

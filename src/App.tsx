@@ -19,6 +19,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import FlowChartGenerator from "./pages/FlowChartGenerator";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/flowchart-generator" element={<FlowChartGenerator />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

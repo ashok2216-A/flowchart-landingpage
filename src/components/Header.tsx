@@ -14,6 +14,15 @@ export const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Function to scroll to top when blog link is clicked
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "py-3 bg-background/80 backdrop-blur-lg shadow-sm border-b border-border/20" : "py-5 bg-transparent"}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
@@ -30,7 +39,7 @@ export const Header = () => {
           <a href="#features" className="hover:text-primary transition-colors">Features</a>
           <a href="#how-it-works" className="hover:text-primary transition-colors">How It Works</a>
           <a href="#pricing" className="hover:text-primary transition-colors">Pricing</a>
-          <Link to="/blog" className="hover:text-primary transition-colors">Blog</Link>
+          <Link to="/blog" className="hover:text-primary transition-colors" onClick={handleScrollToTop}>Blog</Link>
           <Link to="/about" className="hover:text-primary transition-colors">About</Link>
           <a href="#faq" className="hover:text-primary transition-colors">FAQ</a>
         </nav>
@@ -79,7 +88,14 @@ export const Header = () => {
           <a href="#pricing" className="hover:text-primary transition-colors border-b border-border pb-2" onClick={() => setIsMobileMenuOpen(false)}>
             Pricing
           </a>
-          <Link to="/blog" className="hover:text-primary transition-colors border-b border-border pb-2" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link 
+            to="/blog" 
+            className="hover:text-primary transition-colors border-b border-border pb-2" 
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              handleScrollToTop();
+            }}
+          >
             Blog
           </Link>
           <Link to="/about" className="hover:text-primary transition-colors border-b border-border pb-2" onClick={() => setIsMobileMenuOpen(false)}>

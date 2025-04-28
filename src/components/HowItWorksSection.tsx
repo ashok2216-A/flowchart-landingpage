@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
 import { AnimatedGradient } from "./AnimatedGradients";
+import { Link } from "react-router-dom";
 
 export const HowItWorksSection = () => {
   const [showFlowchart, setShowFlowchart] = useState(false);
@@ -128,6 +129,14 @@ export const HowItWorksSection = () => {
     
     return () => clearTimeout(initialDelay);
   }, []);
+  
+  // Handle scroll to top when clicking the button
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   
   return (
     <section id="how-it-works" className="py-16 md:py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-900/50">
@@ -438,7 +447,9 @@ export const HowItWorksSection = () => {
         </div>
         
         <div className="text-center mt-16">
-          <Button size="lg" variant="gradient">Try It Free</Button>
+          <Link to="/flowchart-generator" onClick={handleScrollToTop}>
+            <Button size="lg" variant="gradient">Try It Free</Button>
+          </Link>
           <p className="mt-4 text-sm text-muted-foreground">No credit card required</p>
         </div>
       </div>

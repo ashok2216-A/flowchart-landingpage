@@ -1,8 +1,17 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { AnimatedGradient } from "./AnimatedGradients";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
+  // Handle scroll to top when clicking the button
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <section className="pt-28 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-40 overflow-hidden relative">
       {/* Background Elements */}
@@ -83,9 +92,11 @@ export const HeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8" style={{ animationDelay: "0.3s" }}>
-              <Button variant="gradient" size="lg" className="rounded-full text-base">
-                Generate Your Flowchart
-              </Button>
+              <Link to="/flowchart-generator" onClick={handleScrollToTop}>
+                <Button variant="gradient" size="lg" className="rounded-full text-base">
+                  Generate Your Flowchart
+                </Button>
+              </Link>
               <Button variant="outline" size="lg" className="rounded-full text-base border border-slate-300 dark:border-slate-700 hover:border-brand-blue dark:hover:border-brand-blue hover:bg-transparent">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                 Watch Demo

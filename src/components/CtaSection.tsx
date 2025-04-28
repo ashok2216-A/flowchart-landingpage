@@ -1,10 +1,18 @@
-
 import React, { useState } from "react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 export const CtaSection = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Handle scroll to top when clicking the button
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,9 +44,11 @@ export const CtaSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button variant="gradient" size="lg" className="rounded-full text-base">
-              Start Creating Flowcharts
-            </Button>
+            <Link to="/flowchart-generator" onClick={handleScrollToTop}>
+              <Button variant="gradient" size="lg" className="rounded-full text-base">
+                Start Creating Flowcharts
+              </Button>
+            </Link>
             {/* <Button variant="outline" size="lg" className="rounded-full text-base">
               Schedule a Demo
             </Button> */}

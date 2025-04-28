@@ -14,7 +14,7 @@ const testimonials: Testimonial[] = [
     author: "Sarah Johnson",
     position: "Product Manager",
     rating: 5,
-    avatar: "SJ",
+    avatar: "/images/avatars/avatar-sarah.jpg",
   },
 
   {
@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
     author: "David Kim",
     position: "Software Developer",
     rating: 5,
-    avatar: "DK",
+    avatar: "/images/avatars/avatar-david.jpg",
   },
 
   {
@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
     author: "Robert Wilson",
     position: "Operations Director",
     rating: 5,
-    avatar: "RW",
+    avatar: "/images/avatars/avatar-robert.jpg",
   },
 
   {
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     author: "Thomas Garcia",
     position: "IT Manager",
     rating: 4,
-    avatar: "TG",
+    avatar: "/images/avatars/avatar-thomas.jpg",
   },
 
   {
@@ -46,7 +46,7 @@ const testimonials: Testimonial[] = [
     author: "James Wilson",
     position: "Engineering Manager",
     rating: 5,
-    avatar: "JW",
+    avatar: "/images/avatars/avatar-james.jpg",
   },
 
 ];
@@ -132,8 +132,22 @@ export const TestimonialsSection = () => {
                     </div>
                     <p className="text-muted-foreground mb-6 italic">{testimonial.content}</p>
                     <div className="flex items-center">
-                      <div className="size-10 rounded-full bg-gradient-to-r from-brand-blue to-brand-blue/70 flex items-center justify-center font-medium mr-4">
-                        {testimonial.avatar}
+                      <div className="size-10 rounded-full overflow-hidden mr-4 bg-muted">
+                        <img 
+                          src={testimonial.avatar} 
+                          alt={`${testimonial.author} profile image`}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            // Fallback to initials if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            const parent = target.parentElement;
+                            if (parent) {
+                              parent.classList.add('bg-gradient-to-r', 'from-brand-blue', 'to-brand-blue/70', 'flex', 'items-center', 'justify-center', 'font-medium');
+                              parent.textContent = testimonial.author.split(' ').map(n => n[0]).join('');
+                            }
+                          }}
+                        />
                       </div>
                       <div>
                         <h4 className="font-bold">{testimonial.author}</h4>
